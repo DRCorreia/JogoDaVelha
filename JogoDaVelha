@@ -15,6 +15,7 @@ int verifica_valor(char L_C[6]) //pergunta os valores e realiza tratamento à va
 		if(aux > '3' || aux < '1') 
 		{
 			fflush(stdin);
+			printf("INSIRA UM NUMERO VALIDO!\n\n");
 			continue;
 		}
 		numero = aux-'0';
