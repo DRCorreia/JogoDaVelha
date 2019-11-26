@@ -76,7 +76,7 @@ main()
 {
    char matriz[4][4], valor , L_C[6];//matriz foi declarada como 4x4 por conta de seu design , os valores são armazenados das posições 1 a 3
    int linha=0, coluna=0, i=0, j=0, empate=0, venceu=0,cont=1, jogada=0, verifica[4][4];
-      jogada=1;
+      jogada=1; //variavel usada para saber de quem é a vez
       empate=0;
       venceu=0;
       fflush(stdin);  
