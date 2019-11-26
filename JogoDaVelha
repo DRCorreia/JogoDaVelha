@@ -167,10 +167,10 @@ main()
          
          //VERIFICA LINHAS.
          venceu = verifica_linha(matriz);
-         //VERIFICA COLUNAS.
-		     if(venceu!=1)venceu = verifica_coluna(matriz);
-		     //VERIFICA DIAGONAIS.
-		     if(venceu!=1)venceu = verifica_diagonal(matriz);
+         //VERIFICA COLUNAS , Só vai verificar caso ainda não tenha saido vencedor por linha.
+         if(venceu!=1)venceu = verifica_coluna(matriz);
+         //VERIFICA DIAGONAIS.Só vai verificar caso ainda não tenha saido vencedor por linha ou coluna.
+         if(venceu!=1)venceu = verifica_diagonal(matriz);
          
          jogada++; //incrementa as jogadas
          if(jogada > 9) empate=1; //mais jogadas que espaços disponíveis,jogo empatou
