@@ -61,15 +61,25 @@ int verifica_coluna(char matriz[4][4])
 
 int verifica_diagonal(char matriz[4][4])
 {
-	int i=1 , j=1, somaX=0 , somaO=0;
-	while(i<4 && j<4) 
+	int i=1 , j=1, somaX=0 , somaO=0; 
+	while(i<4 && j<4) //verifica a diagonal de linha [1] coluna [1] , linha [2] coluna [2] e linha [3] coluna[3]
 	{
-		if(matriz[i][j]=='X')somaX+=1;
+		if(matriz[i][j]=='X')somaX+=1; 
 		if(matriz[i][j]=='O')somaO+=1;
-		i++;
-		j++;
 		if(somaX == 3 || somaO == 3)return 1;
+		i++; 
+		j++;
 	}
+	i=1 ; j = 3 ; somaX = 0 ; somaO = 0; //dando novos valores às variáveis
+	while(i<4 && j>0) //verifica a diagonal de linha [1] coluna [3] , linha [2] coluna [2] e linha [3] coluna [1]
+	{
+		if(matriz[i][j]=='X')somaX+=1; 
+		if(matriz[i][j]=='O')somaO+=1;
+		if(somaX == 3 || somaO == 3)return 1;
+		i++; 
+		j--;
+	}
+	
 	return 0;
 }
 
