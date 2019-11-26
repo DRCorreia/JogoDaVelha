@@ -31,7 +31,7 @@ main()
       
       do
       {
-      	 // cls funciona como um "apagador" para tudo que j· foi escrito , para utiliz·-lo È preciso usar o stdlib
+      	 // cls funciona como um "apagador" para tudo que j√° foi escrito , para utiliz√°-lo √© preciso usar o stdlib
          if(jogada <= 10) system("cls"); 
          printf("\n");
          for(i = 1; i <= 3; i++)
@@ -42,17 +42,17 @@ main()
                if(matriz[i][j] == 'X' || matriz[i][j] == 'O')
                printf(" %2c  ",matriz[i][j]); //mostra os valores colocados.
                else
-               printf("     "); //deixa em branco espaÁos ainda n„o informados.
+               printf("     "); //deixa em branco espa√ßos ainda n√£o informados.
                if(j <= 2)
-               printf("%c", 179); //desenha as colunas. 179 È referente a um caracter na tabela ASCII.
+               printf("%c", 179); //desenha as colunas. 179 √© referente a um caracter na tabela ASCII.
             }
             printf("\n");
-            if(i <= 2) //controla a exibiÁ„o da ˙ltima linha do desenho.
+            if(i <= 2) //controla a exibi√ß√£o da √∫ltima linha do desenho.
             for(cont = 1; cont <= 15; cont++)
             {
-               printf("%c", 196); //desenha as linhas. 196 È referente a um caracter na tabela ASCII.
+               printf("%c", 196); //desenha as linhas. 196 √© referente a um caracter na tabela ASCII.
                if(cont == 5 || cont == 10) 
-               printf("%c", 197); //coloca o caractere '+' na junÁ„o das linhas e colunas. 197 È referente a um caracter na tabela ASCII.
+               printf("%c", 197); //coloca o caractere '+' na jun√ß√£o das linhas e colunas. 197 √© referente a um caracter na tabela ASCII.
             }
             printf("\n");
          }
@@ -90,24 +90,24 @@ main()
             	if(linha > 3) printf("O numero da linha nao pode ser maior que 3.\n");
             	if(linha < 1) printf("O numero da linha nao pode ser menor que 1.\n");
             	
-         	}while(linha > 3 || linha < 1 ); //restriÁ„o do tamanho da linha
+         	}while(linha > 3 || linha < 1 ); //restri√ß√£o do tamanho da linha
          	
          	do
          	{
             	printf("INFORME O NUMERO DA COLUNA: "); scanf("%d",&coluna);
             	if(coluna > 3) printf("O numero da coluna nao pode ser maior que 3.\n");
             	if(coluna < 1) printf("O numero da coluna nao pode ser menor que 1.\n");
-            	if(!coluna)printf("Voce nao inseriu um numero!");
+        
             	
-         	}while(coluna > 3 || coluna < 1); //restriÁ„o do tamanho da coluna
+         	}while(coluna > 3 || coluna < 1); //restri√ß√£o do tamanho da coluna
          
-         	if(verifica[linha][coluna]==1) //verifica se a jogada j· foi feita
+         	if(verifica[linha][coluna]==1) //verifica se a jogada j√° foi feita
          	{
           	  printf(">>> Esta jogada ja foi feita!! <<<\n");
          	}
-		 }while(verifica[linha][coluna]==1); //esperando movimento v·lido			 
+		 }while(verifica[linha][coluna]==1); //esperando movimento v√°lido			 
          matriz[linha][coluna]=valor; // coloca o valor no jogo "X" ou "O".
-         verifica[linha][coluna]=1;   // coloca valor 1 em jogadas j· feitas
+         verifica[linha][coluna]=1;   // coloca valor 1 em jogadas j√° feitas
         
          
          //VERIFICA LINHAS.
@@ -131,6 +131,6 @@ main()
          if(matriz[1][3]=='O' && matriz[2][2]=='O' && matriz[3][1]=='O') venceu=1;
          
          jogada++; //incrementa as jogadas
-         if(jogada > 9) empate=1; //mais jogadas que espaÁos disponÌveis,jogo empatou
+         if(jogada > 9) empate=1; //mais jogadas que espa√ßos dispon√≠veis,jogo empatou
       }while(jogada > 1 );
 }
