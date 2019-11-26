@@ -1,0 +1,178 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int verifica_valor(char L_C[6]) //pergunta os valores e realiza tratamento à valores inválidos
+{
+	fflush(stdin);
+	int numero;
+	char aux;
+
+	for (;;)
+	{
+		printf("INFORME O NUMERO DA %s:",L_C);
+		scanf("%c",&aux);
+		if(aux > '3' || aux < '1') 
+		{
+			fflush(stdin);
+			continue;
+		}
+		numero = aux-'0';
+		return numero;	
+		break;
+	}
+}
+
+int verifica_linha(char matriz[4][4])
+{
+	int i , j , somaX=0 , somaO=0;
+	for(i=1;i<4;i++)
+	{
+		for(j=1;j<4;j++)
+		{
+			if(matriz[i][j]=='X')somaX+=1;
+			if(matriz[i][j]=='O')somaO+=1;
+			if(somaX == 3 || somaO == 3)return 1;
+		}
+		somaX=0;
+		somaO=0;
+	}
+return 0;
+}
+
+int verifica_coluna(char matriz[4][4])
+{
+	int i , j , somaX=0 , somaO=0;
+	for(j=1;j<4;j++)
+	{
+		for(i=1;i<4;i++)
+		{
+			if(matriz[i][j]=='X')somaX+=1;
+			if(matriz[i][j]=='O')somaO+=1;
+			if(somaX == 3 || somaO == 3)return 1;
+		}	
+		somaX=0;
+		somaO=0;
+	}
+}
+
+int verifica_diagonal(char matriz[4][4])
+{
+	int i=1 , j=1, somaX=0 , somaO=0;
+	while(i<4 && j<4)
+	{
+		if(matriz[i][j]=='X')somaX+=1;
+		if(matriz[i][j]=='O')somaO+=1;
+		i++;
+		j++;
+		if(somaX == 3 || somaO == 3)return 1;
+	}
+	return 0;
+}
+
+main()
+{
+   char matriz[4][4], valor , L_C[6];
+   int linha=0, coluna=0, i=0, j=0, empate=0, venceu=0,cont=1, jogada=0, verifica[4][4];
+      jogada=1;
+      empate=0;
+      venceu=0;
+      fflush(stdin);  
+      printf("\n");
+      printf("                                                  JOGO DA VELHA LP\n");
+      printf("                                                ====================\n\n\n\n");
+      printf("========================================================================================================================");
+      printf("JOGADOR 1 = \"X\"\n");
+      printf("JOGADOR 2 = \"O\"\n");
+      printf("========================================================================================================================\n");
+      printf("PRESSIONE \"ENTER\" PARA CONTINUAR..."); getchar();
+      system("cls");
+      for(i = 0; i <= 3; i++)
+      {
+         for(j = 0; j <= 3; j++)
+         {
+            matriz[i][j]  =' '; //esvazia os vetores / limpa o tabuleiro.
+            verifica[i][j]=' '; //esvazia os vetores / limpa o tabuleiro.
+         }
+      }
+      
+      do
+      {
+      	 // cls funciona como um "apagador" para tudo que já foi escrito , para utilizá-lo é preciso usar o stdlib
+         if(jogada <= 10) system("cls"); 
+         printf("\n");
+         for(i = 1; i <= 3; i++)
+         {
+            for(j = 1; j <= 3; j++)
+            {
+               //controla o preenchimento dos valores.
+               if(matriz[i][j] == 'X' || matriz[i][j] == 'O')
+               printf(" %2c  ",matriz[i][j]); //mostra os valores colocados.
+               else
+               printf("     "); //deixa em branco espaços ainda não informados.
+               if(j <= 2)
+               printf("%c", 179); //desenha as colunas. 179 é referente a um caracter na tabela ASCII.
+            }
+            printf("\n");
+            if(i <= 2) //controla a exibição da última linha do desenho.
+            for(cont = 1; cont <= 15; cont++)
+            {
+               printf("%c", 196); //desenha as linhas. 196 é referente a um caracter na tabela ASCII.
+               if(cont == 5 || cont == 10) 
+               printf("%c", 197); //coloca o caractere '+' na junção das linhas e colunas. 197 é referente a um caracter na tabela ASCII.
+            }
+            printf("\n");
+         }
+         
+         if(venceu == 1)
+         {
+            printf("===============================================================\n\n");
+            if (jogada%2 == 0)printf("RESULTADO: >>> \"X\" VENCEU <<<\n");
+            else printf("RESULTADO: >>> \"O\" VENCEU <<<\n");
+            break; //termina o jogo
+         }
+         if(empate == 1)
+         {
+            printf("===============================================================\n\n");
+            printf("RESULTADO: >>> O JOGO EMPATOU <<<\n");
+            break; //termina o jogo
+         }
+         
+         if(jogada % 2 != 0) //Impar = jogador 1, Par = jogador 2.
+         {
+            printf("VEZ DO JOGADOR 1: \"X\"\n");
+            valor= 'X';
+         }
+         else
+         {
+            printf("VEZ DO JOGADOR 2:  \"O\"\n");
+            valor= 'O';
+         }
+         printf("===============================================================\n\n");
+         do 
+		 {
+		 	strcpy(L_C, "LINHA");; //L_C será usado apenas para o print na função
+         	linha = verifica_valor(L_C); // na função verifica valor será pedido um numero para linha ou coluna e haverá um tratamento sobre a validez desse input
+         	strcpy(L_C, "COLUNA");
+         	coluna = verifica_valor(L_C);
+         
+         	if(verifica[linha][coluna]==1) //verifica se a jogada já foi feita
+         	{
+          	  printf(">>> Esta jogada ja foi feita!! <<<\n");
+         	}
+		 }while(verifica[linha][coluna]==1); //esperando movimento válido			 
+         matriz[linha][coluna]=valor; // coloca o valor no jogo "X" ou "O".
+         verifica[linha][coluna]=1;   // coloca valor 1 em jogadas já feitas
+        
+         
+         //VERIFICA LINHAS.
+         venceu = verifica_linha(matriz);
+         //VERIFICA COLUNAS.
+		     if(venceu!=1)venceu = verifica_coluna(matriz);
+		     //VERIFICA DIAGONAIS.
+		     if(venceu!=1)venceu = verifica_diagonal(matriz);
+         
+         jogada++; //incrementa as jogadas
+         if(jogada > 9) empate=1; //mais jogadas que espaços disponíveis,jogo empatou
+      }while(jogada > 1 );
+}
