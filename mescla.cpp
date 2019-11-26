@@ -2,6 +2,10 @@
 #include<stdlib.h>
 
 
+/*esta é uma versão QUEBRADA de um jogo da velha para exemplo.
+	1 - O usuário consegue quebrar o código dando input em uma Letra ao invés de um int.
+	2 - O código contém várias formas de implementação que não deveriam ter sido utilizadas ~~verifica linhas , colunas e diagonais
+*/
 
 main()
 {
