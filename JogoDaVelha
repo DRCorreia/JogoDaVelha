@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include<string.h>
 
-int verifica_valor(char linhaColuna[6]) //pergunta os valores e realiza tratamento à valores inválidos , L_C vem com o valor Linha ou Coluna
+int verifica_valor(char linhaColuna[6]) //pergunta os valores e realiza tratamento à valores inválidos , linhaColuna vem com o valor "LINHA" ou "COLUNA"
 {
 	fflush(stdin);
 	int numero; //o inteiro desejado
@@ -221,19 +221,19 @@ main()
          if(venceu!=1)
          {
          	venceu = verifica_coluna(matriz);
-		 }
+	 }
          
          //VERIFICA DIAGONAIS.Só vai verificar caso ainda não tenha saido vencedor por linha ou coluna.
          if(venceu!=1)
          {
          	venceu = verifica_diagonal(matriz);
-		 }
+	 }
          
          jogada++; //incrementa as jogadas
          if(jogada > 9)
          {
          	empate=1; //mais jogadas que espaços disponíveis,jogo empatou
-		 }
+	 }
       }while(jogada > 1 );
 }
 
