@@ -1,8 +1,9 @@
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 
-int verifica_valor(char L_C[6]) //pergunta os valores e realiza tratamento à valores inválidos , L_C vem com o valor Linha ou Coluna
+int verifica_valor(char linhaColuna[6]) //pergunta os valores e realiza tratamento à valores inválidos , L_C vem com o valor Linha ou Coluna
 {
 	fflush(stdin);
 	int numero; //o inteiro desejado
@@ -10,7 +11,7 @@ int verifica_valor(char L_C[6]) //pergunta os valores e realiza tratamento à va
 
 	for (;;)
 	{
-		printf("INFORME O NUMERO DA %s:",L_C);
+		printf("INFORME O NUMERO DA %s:",linhaColuna);
 		scanf("%c",&aux); //tratamento contra inputs errados usando uma variável Char para verificação
 		if(aux > '3' || aux < '1') 
 		{
@@ -20,62 +21,97 @@ int verifica_valor(char L_C[6]) //pergunta os valores e realiza tratamento à va
 		}
 		numero = aux-'0';
 		return numero;	
-		break;
 	}
 }
 
 int verifica_linha(char matriz[4][4])
 {
-	int i , j , somaX=0 , somaO=0; 
+	int i , j , totalX=0 , totalO=0; 
 	for(i=1;i<4;i++)
 	{
 		for(j=1;j<4;j++)
 		{
-			if(matriz[i][j]=='X')somaX+=1; //faz um somatório para saber quantos X tem na linha
-			if(matriz[i][j]=='O')somaO+=1; //faz um somatório para saber quantos O tem na linha
-			if(somaX == 3 || somaO == 3)return 1;
+			if(matriz[i][j]=='X')
+			{
+				totalX+=1; //faz um somatório para saber quantos X tem na linha
+			}
+			if(matriz[i][j]=='O')
+			{
+				totalO+=1; //faz um somatório para saber quantos O tem na linha
+			}
+			if(totalX == 3 || totalO == 3)
+			{
+				return 1;
+			}
 		}
 		//Quando trocamos de linha zeramos seus valores
-		somaX=0; 
-		somaO=0;
+		totalX=0; 
+		totalO=0;
 	}
 return 0;
 }
 
 int verifica_coluna(char matriz[4][4])
 {
-	int i , j , somaX=0 , somaO=0;
+	int i , j , totalX=0 , totalO=0;
 	for(j=1;j<4;j++)
 	{
 		for(i=1;i<4;i++)
 		{
-			if(matriz[i][j]=='X')somaX+=1; //faz um somatório para saber quantos X tem na coluna
-			if(matriz[i][j]=='O')somaO+=1; //faz um somatório para saber quantos O tem na coluna
-			if(somaX == 3 || somaO == 3)return 1;
+			if(matriz[i][j]=='X')
+			{
+				totalX+=1; //faz um somatório para saber quantos X tem na coluna
+			}
+			if(matriz[i][j]=='O')
+			{
+				totalO+=1; //faz um somatório para saber quantos O tem na coluna
+			}
+			if(totalX == 3 || totalO == 3)
+			{
+				return 1;
+			}
 		}
 		//Quando trocamos de coluna zeramos seus valores
-		somaX=0;
-		somaO=0;
+		totalX=0;
+		totalO=0;
 	}
 }
 
 int verifica_diagonal(char matriz[4][4])
 {
-	int i=1 , j=1, somaX=0 , somaO=0; 
+	int i=1 , j=1, totalX=0 , totalO=0; 
 	while(i<4 && j<4) //verifica a diagonal de linha [1] coluna [1] , linha [2] coluna [2] e linha [3] coluna[3]
 	{
-		if(matriz[i][j]=='X')somaX+=1; 
-		if(matriz[i][j]=='O')somaO+=1;
-		if(somaX == 3 || somaO == 3)return 1;
+		if(matriz[i][j]=='X')
+		{
+			totalX+=1; 
+		}
+		if(matriz[i][j]=='O')
+		{
+			totalO+=1;
+		}
+		if(totalX == 3 || totalO == 3)
+		{
+			return 1;
+		}
 		i++; 
 		j++;
 	}
-	i=1 ; j = 3 ; somaX = 0 ; somaO = 0; //dando novos valores às variáveis
+	i=1 ; j = 3 ; totalX = 0 ; totalO = 0; //dando novos valores às variáveis
 	while(i<4 && j>0) //verifica a diagonal de linha [1] coluna [3] , linha [2] coluna [2] e linha [3] coluna [1]
 	{
-		if(matriz[i][j]=='X')somaX+=1; 
-		if(matriz[i][j]=='O')somaO+=1;
-		if(somaX == 3 || somaO == 3)return 1;
+		if(matriz[i][j]=='X')
+		{
+			totalX+=1; 
+		}
+		if(matriz[i][j]=='O')
+		{
+			totalO+=1;
+		}
+		if(totalX == 3 || totalO == 3)
+		{
+			return 1;
+		}
 		i++; 
 		j--;
 	}
@@ -85,7 +121,7 @@ int verifica_diagonal(char matriz[4][4])
 
 main()
 {
-   char matriz[4][4], valor , L_C[6];//matriz foi declarada como 4x4 por conta de seu design , os valores são armazenados das posições 1 a 3
+   char matriz[4][4], valor , linhaColuna[6];//matriz foi declarada como 4x4 por conta de seu design , os valores são armazenados das posições 1 a 3
    int linha=0, coluna=0, i=0, j=0, empate=0, venceu=0,cont=1, jogada=0, verifica[4][4];
       jogada=1; //variavel usada para saber de quem é a vez
       empate=0;
@@ -164,10 +200,10 @@ main()
          printf("===============================================================\n\n");
          do 
 		 {
-		strcpy(L_C, "LINHA"); //L_C será usado apenas para o print na função
-         	linha = verifica_valor(L_C); // na função verifica valor será pedido um numero para linha ou coluna e haverá um tratamento sobre a validez desse input
-         	strcpy(L_C, "COLUNA");
-         	coluna = verifica_valor(L_C);
+		    strcpy(linhaColuna, "LINHA"); //L_C será usado apenas para o print na função
+         	linha = verifica_valor(linhaColuna); // na função verifica valor será pedido um numero para linha ou coluna e haverá um tratamento sobre a validez desse input
+         	strcpy(linhaColuna, "COLUNA");
+         	coluna = verifica_valor(linhaColuna);
          
          	if(verifica[linha][coluna]==1) //verifica se a jogada já foi feita
          	{
@@ -180,13 +216,24 @@ main()
          
          //VERIFICA LINHAS.
          venceu = verifica_linha(matriz);
+         
          //VERIFICA COLUNAS , Só vai verificar caso ainda não tenha saido vencedor por linha.
-         if(venceu!=1)venceu = verifica_coluna(matriz);
+         if(venceu!=1)
+         {
+         	venceu = verifica_coluna(matriz);
+		 }
+         
          //VERIFICA DIAGONAIS.Só vai verificar caso ainda não tenha saido vencedor por linha ou coluna.
-         if(venceu!=1)venceu = verifica_diagonal(matriz);
+         if(venceu!=1)
+         {
+         	venceu = verifica_diagonal(matriz);
+		 }
          
          jogada++; //incrementa as jogadas
-         if(jogada > 9) empate=1; //mais jogadas que espaços disponíveis,jogo empatou
+         if(jogada > 9)
+         {
+         	empate=1; //mais jogadas que espaços disponíveis,jogo empatou
+		 }
       }while(jogada > 1 );
 }
 
