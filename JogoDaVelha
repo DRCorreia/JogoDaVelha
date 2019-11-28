@@ -200,7 +200,7 @@ main()
          printf("===============================================================\n\n");
          do 
 		 {
-		    strcpy(linhaColuna, "LINHA"); //L_C será usado apenas para o print na função
+		    strcpy(linhaColuna, "LINHA"); //linhaColuna será usado apenas para o print na função
          	linha = verifica_valor(linhaColuna); // na função verifica valor será pedido um numero para linha ou coluna e haverá um tratamento sobre a validez desse input
          	strcpy(linhaColuna, "COLUNA");
          	coluna = verifica_valor(linhaColuna);
