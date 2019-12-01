@@ -28,35 +28,35 @@ main()
       {
          for(j = 0; j <= 3; j++)
          {
-            matriz[i][j]  =' '; //esvazia os vetores / limpa o tabuleiro.
-            verifica[i][j]=' '; //esvazia os vetores / limpa o tabuleiro.
+            matriz[i][j]  =' '; 
+            verifica[i][j]=' '; 
          }
       }
       
       do
       {
-      	 // cls funciona como um "apagador" para tudo que já foi escrito , para utilizá-lo é preciso usar o stdlib
+      	
          if(jogada <= 10) system("cls"); 
          printf("\n");
          for(i = 1; i <= 3; i++)
          {
             for(j = 1; j <= 3; j++)
             {
-               //controla o preenchimento dos valores.
+               
                if(matriz[i][j] == 'X' || matriz[i][j] == 'O')
-               printf(" %2c  ",matriz[i][j]); //mostra os valores colocados.
+               printf(" %2c  ",matriz[i][j]);
                else
-               printf("     "); //deixa em branco espaços ainda não informados.
+               printf("     "); 
                if(j <= 2)
-               printf("%c", 179); //desenha as colunas. 179 é referente a um caracter na tabela ASCII.
+               printf("%c", 179); 
             }
             printf("\n");
-            if(i <= 2) //controla a exibição da última linha do desenho.
+            if(i <= 2) 
             for(cont = 1; cont <= 15; cont++)
             {
-               printf("%c", 196); //desenha as linhas. 196 é referente a um caracter na tabela ASCII.
+               printf("%c", 196); 
                if(cont == 5 || cont == 10) 
-               printf("%c", 197); //coloca o caractere '+' na junção das linhas e colunas. 197 é referente a um caracter na tabela ASCII.
+               printf("%c", 197); 
             }
             printf("\n");
          }
@@ -66,13 +66,13 @@ main()
             printf("===============================================================\n\n");
             if (jogada%2 == 0)printf("RESULTADO: >>> \"X\" VENCEU <<<\n");
             else printf("RESULTADO: >>> \"O\" VENCEU <<<\n");
-            break; //termina o jogo
+            break; 
          }
          if(empate == 1)
          {
             printf("===============================================================\n\n");
             printf("RESULTADO: >>> O JOGO EMPATOU <<<\n");
-            break; //termina o jogo
+            break; 
          }
          
          if(jogada % 2 != 0) //Impar = jogador 1, Par = jogador 2.
@@ -94,7 +94,7 @@ main()
             	if(linha > 3) printf("O numero da linha nao pode ser maior que 3.\n");
             	if(linha < 1) printf("O numero da linha nao pode ser menor que 1.\n");
             	
-         	}while(linha > 3 || linha < 1 ); //restrição do tamanho da linha
+         	}while(linha > 3 || linha < 1 ); 
          	
          	do
          	{
@@ -103,15 +103,15 @@ main()
             	if(coluna < 1) printf("O numero da coluna nao pode ser menor que 1.\n");
         
             	
-         	}while(coluna > 3 || coluna < 1); //restrição do tamanho da coluna
+         	}while(coluna > 3 || coluna < 1); 
          
-         	if(verifica[linha][coluna]==1) //verifica se a jogada já foi feita
+         	if(verifica[linha][coluna]==1) 
          	{
           	  printf(">>> Esta jogada ja foi feita!! <<<\n");
          	}
-		 }while(verifica[linha][coluna]==1); //esperando movimento válido			 
-         matriz[linha][coluna]=valor; // coloca o valor no jogo "X" ou "O".
-         verifica[linha][coluna]=1;   // coloca valor 1 em jogadas já feitas
+		 }while(verifica[linha][coluna]==1); 			 
+         matriz[linha][coluna]=valor; 
+         verifica[linha][coluna]=1;   
         
          
          //VERIFICA LINHAS.
@@ -134,7 +134,7 @@ main()
          if(matriz[1][1]=='O' && matriz[2][2]=='O' && matriz[3][3]=='O') venceu=1;
          if(matriz[1][3]=='O' && matriz[2][2]=='O' && matriz[3][1]=='O') venceu=1;
          
-         jogada++; //incrementa as jogadas
-         if(jogada > 9) empate=1; //mais jogadas que espaços disponíveis,jogo empatou
+         jogada++; 
+         if(jogada > 9) empate=1; 
       }while(jogada > 1 );
 }
